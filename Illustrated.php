@@ -193,7 +193,8 @@ class Illustrated extends Behavior  {
     public function beforeValidate($event)  {
         $upl = new UploadedFile();
         $this->_file = $upl->getInstance($this->owner, $this->fileAttribute);
-        if ($this->_file && ! $this->_file->hasError)   {
+        if ($this->_file && ! $this->_file->hasError) 
+        {
 
             /**
              * @var $owner ActiveRecord
@@ -201,10 +202,12 @@ class Illustrated extends Behavior  {
             $owner = $this->owner;
 
             // Determine aspect ratio
-            if (is_numeric($this->aspectRatio))   {
+            if (is_numeric($this->aspectRatio)) 
+            {
                 $asp = $this->aspectRatio;
             }
-            else    {
+            else 
+            {
                 $asp = $owner->getAttribute($this->aspectRatio);
                 if ($asp > 30) {        // Uploader widget sets aspect ratio at 1000 x real value
                     $asp /= 1000;       // compensate
@@ -218,7 +221,13 @@ class Illustrated extends Behavior  {
             $ww = $imgSize->getWidth();
             $hh = $imgSize->getHeight();
 
+            Yii::info('$ww => '. $ww);
+            Yii::info('$hh => '. $hh);
+
             $error = true;  // presume error
+
+            Yii::info('$this');
+            Yii::info($this);
 
             // Apply crop, if possible
             if ($this->_w > 0 && $this->_h > 0)    {
